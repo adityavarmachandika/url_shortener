@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [link,setlink]= useState('')
+  const [shortlink,setshortlink]=useState('')
   const post_req= async()=>{
     try{
       const response = await fetch('http://localhost:3000/createurl',{
@@ -12,8 +13,10 @@ function App() {
         headers: { 'Content-Type': 'application/json' },
         body:JSON.stringify({longurl:link})
       })
-      if(!response.ok)
-        console.log("response not ok")
+      if(response.ok){
+        const data= await response.text()
+        setshortlink(data)
+      }
     }
     catch(err){
       console.log(err)
@@ -30,6 +33,10 @@ function App() {
         <button className='align-middle bg-black text-white w-24' onClick={(e)=>{e.preventDefault(); post_req()}}>Generate</button>
         </div>
       </form>
+      <p className='flex justify-center'>http://localhost:3000/{shortlink}</p>
+      <div>
+
+      </div>
     </div>
   ) 
 }

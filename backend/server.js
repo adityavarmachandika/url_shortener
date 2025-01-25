@@ -20,6 +20,7 @@ app.post('/createurl',(req,res)=>{
     const extend=shortid.generate()
     twourl['shorturl']=extend
     dbadd(twourl)
+    res.send(extend)
 })
 
 

@@ -11,7 +11,7 @@ const sendtodb=async(shorturl,res) =>{
         return res.redirect(result.longurl)
     }
     else{
-        return res.status(404).send("shorturlnotfind")
+        return res.status(404).send("short url not found")
     }
 }
 module.exports=sendtodb
